@@ -1,1 +1,38 @@
-re
+#include <stdio.h>
+#include <iostream>
+#include <math.h>
+#include <cmath>
+#include <vector>
+using namespace std;
+
+int main()
+{
+   int n;
+   cin >> n;
+  for (int i = 0;i < n;i++){
+    int a; //nombre de casos
+
+    cin >> a;   //legim el nombre de vegades A
+    
+    vector<long long int> v(a);     //on posam els nombres participants
+    int cont = 0;
+    //legim totes les dades:
+    
+    
+    for (int y = 0;y < a;y++){
+        cin >> v[y];
+    }
+    
+    int d = a;
+    for (int y = 0; cont < a; y++){ 
+        //int rt = -v[d];
+           if ( v[y] = -v[d]){
+            for(int cont=2; cont < a; cont++){
+                v [y] = v[y+1];
+            }
+                
+        }        
+    }
+    cout << y << v[y] << end;
+  }
+}
