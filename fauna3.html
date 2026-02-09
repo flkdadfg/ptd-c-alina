@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <a href="http://www.gimnesia.net/dev/2025/alina/index.html"> index </a>
+
+<body>
+        <meta charset="UTF-8">
+
+<h1><strong>FAUNA 3</strong></h1>
+
+<h2> Exercici 5 </h2>
+
+
+
+<p id="resultat1"> Resultat:</p>
+<p id="menor50"> Menors de 50:</p>
+<p id="major50"> Majors de 50:</p>
+<p id="parells"> Numeros parells:</p>
+<p id="senars"> Numeros senars:</p>
+
+
+
+
+<button onclick="exercici2()">pitja aquí per canviar</button>
+
+
+</body>
+<script>
+
+let llista=[]
+let menor50= "Menors50: "
+let major50= "Majors50: "
+let i=0;
+let parells= "Numeros parells: " 
+let senars= "Numeros senars: "
+function exercici2(){
+    let menor50="Menors50: "
+    //let major50="Majors50: "
+    let i=0;
+    let parells= "Numeros parells: " 
+    let senars= "Numeros senars: "
+    while (i<80){
+        llista[i] = Math.floor(Math.random()*80)
+        i ++;
+    console.log(i);
+    }
+    document.getElementById("resultat1").innerHTML = "Resultat: " + llista
+    i=0;
+    major50=[]
+    menor50=[]
+    senars=[]
+    parells=[]
+    while (i<80){
+       
+        if (llista[i]>50){
+           // major50 = major50 + llista[i] + ", "
+            major50.push(llista[i])+" "
+        }
+        if (llista[i]<50){
+            //menor50 = menor50 + llista[i] + ", "
+            menor50.push(llista[i])
+        }
+        if (llista[i]%2==0){
+            //parells = parells + llista[i] + ", "
+            parells.push(llista[i])
+        }
+        if (llista[i]%2 !==0){
+            //senars = senars + llista[i] + ", "
+            senars.push(llista[i])
+        }
+        
+        i ++;
+    }
+    document.getElementById("major50").innerHTML = "Majors de 50: "+major50
+    document.getElementById("menor50").innerHTML = "Menors de 50: "+menor50
+    document.getElementById("parells").innerHTML = "Numeros parells: "+parells
+    document.getElementById("senars").innerHTML = "Numeros senars: "+senars
+
+
+}   
+</script>
+</html>

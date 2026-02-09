@@ -1,0 +1,62 @@
+<html lang="ca">
+
+
+<head>
+  <meta charset="UTF-8">
+  <a href="http://www.gimnesia.net/dev/2025/alina/index.html"> index </a>
+
+  <title>Exercicis Javascript</title>
+</head>
+<body>
+
+<h2>1. Positiu o Negatiu.</h2>
+
+
+<div  class="box">
+    
+    <input type="number" id="ex1">
+
+    <button onclick="ex1()">Comprovar</button>
+
+    <p class="res" id="res1"></p>
+
+</div>
+<div>
+<h3>mostra animal</h3>
+        <img src="../img/Ferreret.jpg" width="300"  >
+</div>
+</body>
+
+<script>
+
+function ex1() {   
+
+let n = parseFloat(document.getElementById("ex1").value);
+
+let resultat=""
+
+num="Has escrit el numero "+n;
+
+   if (n > 0) {
+        alert(num);alert("El nombre és positiu");
+        resultat = "positiu";
+        console.log("n="+n); console.log("el nombre es positiu");}
+    else
+    if(n<0) {
+        alert(num);alert("El nombre es negatiu");
+        resultat="negatiu";
+        console.log("n="+n);console.log("el nombre es negatiu");}
+    else
+    if(n===0) {
+        alert(num);
+        resultat="zero";
+        console.log("n="+n);}
+    else {
+        alert("no has escrit res");
+        resultat="buit";
+        console.log("n està buit");}
+document.getElementById("res1").innerText = resultat;
+
+}
+
+</script>

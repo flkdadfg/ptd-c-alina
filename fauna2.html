@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<a href="http://www.gimnesia.net/dev/2025/alina/index.html"> index </a>
+
+<body>
+    <meta charset="UTF-8">
+<h1><strong>FAUNA 2</strong></h1>
+
+<h2>ESCRUI UN NUMERO I APEREIXARA UN ALERT AMB ENLLAÇ I LA FOTO</h2>
+
+<input type="number" id="entrada" min="1" max="100" ><br><br>
+<button onclick="mostra()">pitja</button>
+<p></p>
+<img src="" width="200" id="imatge"> 
+
+<h4>EXERCICI 2 MESCLA</h4>
+
+<p id="resultat1"> Resultat:</p>
+
+<button onclick="exercici2()">pitja aquí per canviar</button>
+
+<p></p>
+<img src="" width="200" id="imatge1">
+<img src="" width="200" id="imatge2">
+<img src="" width="200" id="imatge3">
+<img src="" width="200" id="imatge4">
+<img src="" width="200" id="imatge5">
+<img src="" width="200" id="imatge6">
+
+</body>
+<script>
+let n=""
+function mostra(){
+    let n = document.getElementById("entrada").value
+        n = ("http://aula.gimnesia.net/fotos/"+ n +".jpg")
+            document.getElementById("imatge").src = n
+        alert ("http://aula.gimnesia.net/fotos/"+ n )
+    }
+
+let llista=[]
+let d="http://aula.gimnesia.net/fotos/"
+function exercici2(){
+    i=0;
+    while (i<80){
+        llista[i] = Math.floor(Math.random()*80)
+        i +=1
+
+    }
+    document.getElementById("resultat1").innerHTML = "Resultat:"+llista
+    document.getElementById("imatge1").src =(d+llista[0]+".jpg")
+    document.getElementById("imatge2").src =(d+llista[1]+".jpg")
+    document.getElementById("imatge3").src =(d+llista[2]+".jpg")
+    document.getElementById("imatge4").src =(d+llista[3]+".jpg")
+    document.getElementById("imatge5").src =(d+llista[4]+".jpg")
+    document.getElementById("imatge6").src =(d+llista[5]+".jpg")
+
+
+}   
+
+</script>
+</html>
