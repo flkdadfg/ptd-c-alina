@@ -4,23 +4,31 @@
 using namespace std;
 
 int main() {
-    string linea;
-    //cout << "Introdueix la llista de llibres" << endl;
-    getline(cin, linea);
     
-    istringstream iss(linea);
-    
-    vector<int> a;   // llista
-    int num;    //en numeros
+    int f; // numero de casos/llistes
+    cin >> f;
+    cin.ignore();
+    int ct = 0; //ct = contador de llistes/cassoss
+    for (int ct = 0; ct < f; ct++){
 
-    // Guardar tots els numeros en el vector
-    while (iss >> num) {
-        a.push_back(num);   //posa numeros a "a"
-    }
-    int n = a.size(); //n = numero de llibres/numeros
-    int i = 0; //recoredor de la llista
-    //LLEVAR 0 (movent a l'esquerra)
-        while (i<n) {
+        string linea;
+        //cout << "Introdueix la llista de llibres" << endl;
+        getline(cin, linea);
+    
+        istringstream iss(linea);
+    
+        vector<int> a;   // llista
+        int num;    //en numeros
+
+        // Guardar tots els numeros en el vector
+        while (iss >> num) {
+            a.push_back(num);   //posa numeros a "a"
+        }
+        int n = a.size(); //n = numero de llibres/numeros
+        int i = 0; //recoredor de la llista
+        
+        //LLEVAR 0 (movent a l'esquerra)
+        while (i<n){
             if (a[i] == 0) { //moure numeros
                 for (int j = i; j < n -1; j++) {
                     a[j] = a[j+1];
@@ -30,26 +38,70 @@ int main() {
                 i++; //si no hi ha 0 avançam per trbar els 0
             }
         }
-    //COMENÇAR A COMPROVAR SI HI HA O NO FANTASMA
-    int k = 0; // si k es 0 tot be si k es 5 malament
-        if (n%2 != 0){ //numero es impar --> el fantasma ha afegit o llevat llibres
+//COMPROVAR SI HI HA O NO FANTASMA
+        int k = 0; // si k es 0 tot be si k es 5 malament
+   // EL FANTASMA HA LLEVAT/POSSAT IMPARS LLIBRES
+        if (n%2 != 0){  //numero es impar --> el fantasma ha afegit o llevat llibres
             k = 5;
         }
-    
-    
+    // LÓGICA
+        if (a[0] < 0){  //no pot començar llevant llibres
+            k = 5;
+        }
+        if (a[n-1] > 0){  //no pot acabar possant llibres
+            k = 5;
+        }
+        
+        i = 0;
+        int j = i+1;
+    //HI HA LLIBRES REPETITS (Un mateix llibre no pot ser tornat diverses vegades el mateix dia.)
+        if (i<n-1){ //i contador principal (es mou menos) i j secundari (es mou cada vegada)
+            if (a[i] == a[j]){
+                k = 5;
+            } else {
+                j++; 
+            }
+            if (j == n-1){ //acaba la primera ronda (hi ha n-1 ronda (la ronda n seria n=?n))
+                i++;
+                j = i+1;
+            }
+        }
+        //DESPRDENA LLIBRES
+        i = 0;
+        while (k == 0 && i < n-1) {
+            if (a[i]>0){     //1. cercar primer llibre llevat (numero negatiu)
+                i++;
+            }else{
+                j = i-1;
+                if (a[j] == -a[i]){
+                    for (int j = i-1; j < n -1; j++) {
+                        a[j] = a[j+1];
+                    }
+                    n = n-2;
+                    i = 0;
+                    if (n < 1){
+                        k=5;
+                    }
+                }else{
+                    k = 5;
+                }
+            }
+        }
+
+        
     // MOSTRAR LLISTA DE LLIBRES
-    cout << "llista de llibres sensen 0 te: " << n << " llibres/components" << endl;
-    cout << "llista de llibres sensen 0 es: ";
-    for (int i=0; i<n; i++) {
-        cout << a[i] << " ";
-    }
-    cout << endl;
     
-    if (k == 5) {
-        cout << "malament" << endl;
+    cout << "Lista sin 0 tiene: " << n << " libros/componentes" << endl;
+    cout << "Lista sin 0 es: ";
+    for (int i=0; i<n; i++) cout << a[i] << " ";
+    cout << endl;
+
+    if (k == 5){
+        cout << "PARANORMAL" << endl;
     }
-    else {
-        cout << "be" << endl;
+    if (k == 0){
+        cout << "NORMAL" << endl;
     }
+}
     return 0;
 }
