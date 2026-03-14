@@ -1,38 +1,34 @@
-#include <stdio.h>
 #include <iostream>
-#include <math.h>
-#include <cmath>
+#include <sstream>
 #include <vector>
 using namespace std;
 
-int main()
-{
-   int n;
-   cin >> n;
-  for (int i = 0;i < n;i++){
-    int a; //nombre de casos
+int main() {
+    string linea;
+    cout << "Dime una lista de numeros:" << endl;
+    getline(cin, linea);
 
-    cin >> a;   //legim el nombre de vegades A
-    
-    vector<long long int> v(a);     //on posam els nombres participants
-    int cont = 0;
-    //legim totes les dades:
-    
-    
-    for (int y = 0;y < a;y++){
-        cin >> v[y];
+    istringstream iss(linea);
+    vector<int> a;   // lista de números
+    int num;
+
+    // Guardar todos los números en el vector a
+    while (iss >> num) {
+        a.push_back(num);
     }
-    
-    int d = a;
-    for (int y = 0; cont < a; y++){ 
-        //int rt = -v[d];
-           if ( v[y] = -v[d]){
-            for(int cont=2; cont < a; cont++){
-                v [y] = v[y+1];
-            }
-                
-        }        
+
+    // Crear t como copia de a
+    vector<int> t = a;
+
+    // Mostrar cantidad de números
+    cout << "Tu lista de numeros tiene " << t.size() << " numeros" << endl;
+
+    // Mostrar la lista completa
+    cout << "La lista de numeros es: ";
+    for (int i = 0; i < t.size(); i++) {
+        cout << t[i] << " ";
     }
-    cout << y << v[y] << end;
-  }
+    cout << endl;
+
+    return 0;
 }
