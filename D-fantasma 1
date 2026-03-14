@@ -4,11 +4,11 @@
 using namespace std;
 
 int main() {
-    
     int f; // numero de casos/llistes
     cin >> f;
     cin.ignore();
     int ct = 0; //ct = contador de llistes/cassoss
+    
     for (int ct = 0; ct < f; ct++){
 
         string linea;
@@ -33,61 +33,55 @@ int main() {
                 for (int j = i; j < n -1; j++) {
                     a[j] = a[j+1];
                 }
+                i = 0;
                 n--; //la llista ara te un element menys (el 0 que s'ha llevat)
-            } else {
+            }
+            if (a[i] != 0){
                 i++; //si no hi ha 0 avançam per trbar els 0
             }
         }
 //COMPROVAR SI HI HA O NO FANTASMA
         int k = 0; // si k es 0 tot be si k es 5 malament
-   // EL FANTASMA HA LLEVAT/POSSAT IMPARS LLIBRES
-        if (n%2 != 0){  //numero es impar --> el fantasma ha afegit o llevat llibres
-            k = 5;
-        }
-    // LÓGICA
-        if (a[0] < 0){  //no pot començar llevant llibres
-            k = 5;
-        }
-        if (a[n-1] > 0){  //no pot acabar possant llibres
-            k = 5;
+   // EL FANTASMA HA LLEVAT/POSSAT IMPARS LLIBRES I LÓGICA
+        if (n%2 != 0 || a[0] < 0 || a[n-1] > 0){ //numero es impar --> el fantasma ha afegit o llevat llibres //no pot començar llevant llibres // NO POT ACABAT POSSANT LLIBRES
+            k = 5;  
         }
         
-        i = 0;
-        int j = i+1;
-    //HI HA LLIBRES REPETITS (Un mateix llibre no pot ser tornat diverses vegades el mateix dia.)
-        if (i<n-1){ //i contador principal (es mou menos) i j secundari (es mou cada vegada)
-            if (a[i] == a[j]){
-                k = 5;
-            } else {
-                j++; 
-            }
-            if (j == n-1){ //acaba la primera ronda (hi ha n-1 ronda (la ronda n seria n=?n))
-                i++;
-                j = i+1;
-            }
-        }
         //DESPRDENA LLIBRES
         i = 0;
+        int j = 0;
         while (k == 0 && i < n-1) {
-            if (a[i]>0){     //1. cercar primer llibre llevat (numero negatiu)
-                i++;
-            }else{
-                j = i-1;
-                if (a[j] == -a[i]){
-                    for (int j = i-1; j < n -1; j++) {
-                        a[j] = a[j+1];
+            for (int i = 0; i < n-1; i++){
+                if (a[i] < 0){  //1. cercar primer llibre llevat (numero negatiu)
+                    j = i-1; //j = numero d'abans del negatiu
+                    if (n == 2){
+                        if (a[j] != -a[i]){
+                            k = 5;
+                        }
+                        if (a[j] == -a[i]){
+                            i = 1;
+                        }
                     }
-                    n = n-2;
-                    i = 0;
-                    if (n < 1){
-                        k=5;
+                    
+                    if (n > 2){
+                        if (a[j] == -a[i]){ // si primer numero negatiu = el numro d'abans 
+        
+                            for (int j = i-1; j < n -2; j++) { //moure a l'esquerra
+                                a[j] = a[j+1];
+                            }
+                            n--;
+                            for (int j = i-1; j < n -2; j++) { // tornar moure a l'esquerra
+                                a[j] = a[j+1];
+                            }
+                            n--;
+                            i = 0;
+                        }else{
+                            k = 5;
+                        }
                     }
-                }else{
-                    k = 5;
                 }
             }
         }
-
         
     // MOSTRAR LLISTA DE LLIBRES
     
