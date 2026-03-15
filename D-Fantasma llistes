@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+int main() {
+    int f;
+    cout << "Introduce el numero de listas (f): ";
+    cin >> f;
+    cin.ignore(); // Limpiar el buffer
+
+    // 1. FASE DE LECTURA: Guardamos todo en el vector 'r'
+    vector<vector<int>> a;
+
+    for (int y = 1; y <= f; y++) {
+        string linea;
+        cout << "Introduce los numeros de la lista " << y << " separados por espacios: ";
+        getline(cin, linea);
+
+        stringstream ss(linea);
+        int numero;
+        vector<int> lista_actual;
+
+        while (ss >> numero) {
+            lista_actual.push_back(numero);
+        }
+        
+        // Guardamos la lista completa en a
+        a.push_back(lista_actual);
+    }
+
+    // 2. FASE DE SALIDA: Mostramos los resultados usando 'a'
+    cout << "\n--- RESULTADOS ---" << endl;
+
+    for (int y = 0; y < f; y++) {
+        int n = a[y].size();
+
+        cout << "La lista " << y + 1 << " tiene " << n << " numeros." << endl;
+        cout << "Elementos: ";
+        
+        for (int r = 0; r < n; r++) {
+            cout << a[y][r] << (r == n - 1 ? "" : ", ");
+        }
+        cout << "\n" << endl;
+    }
+
+    return 0;
+}
