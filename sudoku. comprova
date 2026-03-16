@@ -1,0 +1,96 @@
+
+def comprovaGrup(grup):
+    tots = [1,2,3,4,5,6,7,8,9]
+
+    for i in range(len(grup)):
+        #print("El valor de tots és ", grup[i])
+        if (grup[i] in tots):
+            tots.remove(grup[i])
+        #print("Llista grup:", grup )
+        #print("Llista tots:", tots )
+
+    if len(tots) == 0:
+        return True
+    else:
+        return False
+
+fila = []
+columna = [] 
+
+sudoku =[   [9,6,3,1,7,4,2,5,8],
+            [1,7,8,3,2,5,6,4,9],
+            [2,5,4,6,8,9,7,3,1],
+            [8,2,1,4,3,7,5,9,6],
+            [4,9,6,8,5,2,3,1,7],
+            [7,3,5,9,6,1,8,2,4],
+            [5,8,9,7,1,3,4,6,2],
+            [3,1,7,2,4,6,9,8,5],
+            [6,4,2,5,9,8,1,7,3]
+            ]
+print("COMPROVANT COLUMNES")
+for i in range(9):
+    for j in range(9):
+        columna.append(sudoku[j][i])
+    print("columna ", i, ": ",columna)
+    comprovaGrup(columna)
+    columna=[]
+print("COMPROVANT FILES")
+for i in range(9):
+    for j in range(9):
+        fila.append(sudoku[i][j])
+    print("fila ", i, ": ",fila)
+    comprovaGrup(fila)
+    fila=[]
+
+
+print("COMPROVANT GRUPS (3x3)")
+
+for i in range(9):
+    grup = []
+    ct = i
+    print (ct)
+    n = 0
+    if ct < 9: #ct -> contador de grup
+        cot = 0
+        if ct == 0 or ct == 3 or ct == 6:
+            m = 0
+            n= 0
+        else:
+            if ct == 3
+                m = 0
+            if
+            if ct == 1 or ct == 4 or ct == 7:
+                m = 3
+            else:
+                if ct == 2 or ct == 5 or ct == 8:
+                    m = 6
+                else:
+                    if ct == 0 or ct == 1 or ct == 2:
+                        n = 0
+                    else:
+                        if ct == 3 or ct == 4 or ct == 5:
+                            n = 3
+                        else:
+                            if ct == 6 or ct == 7 or ct == 8:
+                                n = 6
+
+                #comença el codig
+            while cot < 9: # coot -> contador de umeros d'un grup
+                grup.append(sudoku[n][m])
+                m = m + 1
+                cot = cot + 1
+                if cot == 3 or cot == 6:                #cambiar de fila i columna
+                    n = n + 1                               #cambiar de columna
+                    if ct == 0 or ct == 3 or ct == 6:       #cambiar de fila
+                        m = 0
+                    else:
+                        if ct == 1 or ct == 4 or ct == 7:
+                            m = 3
+                        else:
+                            if ct == 2 or ct == 5 or ct == 8:
+                                m = 6
+                else:
+                    if cot == 9:
+                        ct = ct + 1
+            print("Grup", i, ":", grup)
+            print(comprovaGrup(grup))    
