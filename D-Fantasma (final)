@@ -52,7 +52,19 @@ int main() {
         /*cout << "Sin 0 (" << n << "): ";
         for (int i = 0; i < n; i++) cout << a[i] << " ";
         cout << endl;*/
-
+        
+        
+        //MIRAR SI HI HA NUMEROS NEGATIUS
+        k = 5;
+        for (int i = 0; i < n-1; i++) {
+            if (a[i] < 0) { //hi ha numero negatiu
+                k = 5;
+                i = n-1;
+            } else {
+                i++;
+            }
+        }
+        
 // COMPROBAR
         // LOGICA
         
@@ -61,38 +73,26 @@ int main() {
         }
         i = 0;    
         /*(n > 0 && a[0] < 0) || (n > 0 && a[n - 1] > 0) {*/
-        //MIRAR SI HI HA NUMEROS NEGATIUS
-         /*while (i < n-1) {
-            if (a[i]  0) {
-                for (int j = i; j < n - 1; j++) { //moure a l'esquerra
-                    a[j] = a[j + 1];
-                }
-                n--;
-                i = 0;
-            } else {
-                i++;
-            }
-        }*/
         
+        int j = 0;
         i = 0;
         //CERCAR PRIMER NUMERO NEGASÇTIU (NUMERO QUE ES LLEVA) I VOMPARAR-LO AMB EL SEU PRECURSOR (ha de ser el mateix amb canvi de signe
         while (k == 0 && i < n - 1) {
-            if (a[i] < 0) {
-                int j = i - 1;
-
-                if (j < 0 || -a[j] != a[i]) {
+            if (a[i] < 0) { // numero negatiu
+                j = i - 1;
+                if (-a[j] != a[i]) {
                     k = 5;
                     //break;
                 }
-
-                // eliminar parejaj de numeros
-                for (int x = j; x < n - 2; x++) {
-                    a[x] = a[x + 2];
-                }
-                n = n-2;
-                i = 0;
-            } else {
-                i++;
+                if (-a[j] == a[i]){
+                    for (int x = j; x < n - 2; x++) { // eliminar parejaj de numeros
+                        a[x] = a[x + 2];
+                    }
+                    n = n-2;
+                    i = 0;
+                } else {
+                    i++;
+                }       
             }
         }
 
