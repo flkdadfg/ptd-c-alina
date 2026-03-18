@@ -25,8 +25,8 @@ int main() {
 
         listas.push_back(a);
     }
-
-    // 🔹 PROCESAR Y MOSTRAR DESPUÉS
+    int k = 0;
+    // PROCESAR I MOSTRAR DESPRÉS
     for (int ct = 0; ct < f; ct++) {
         vector<int> a = listas[ct];
         int n = a.size();
@@ -37,12 +37,13 @@ int main() {
 
         // ELIMINAR CEROS
         int i = 0;
-        while (i < n) {
+        while (i < n-1) {
             if (a[i] == 0) {
-                for (int j = i; j < n - 1; j++) {
+                for (int j = i; j < n - 1; j++) { //moure a l'esquerra
                     a[j] = a[j + 1];
                 }
                 n--;
+                i = 0;
             } else {
                 i++;
             }
@@ -52,29 +53,43 @@ int main() {
         for (int i = 0; i < n; i++) cout << a[i] << " ";
         cout << endl;*/
 
-        // COMPROBACIO
-        int k = 0;
-
-        if (n % 2 != 0 || (n > 0 && a[0] < 0) || (n > 0 && a[n - 1] > 0)) {
+// COMPROBAR
+        // LOGICA
+        
+        if (n % 2 != 0) {
             k = 5;
         }
-
-        // LOGICA
+        i = 0;    
+        /*(n > 0 && a[0] < 0) || (n > 0 && a[n - 1] > 0) {*/
+        //MIRAR SI HI HA NUMEROS NEGATIUS
+         /*while (i < n-1) {
+            if (a[i]  0) {
+                for (int j = i; j < n - 1; j++) { //moure a l'esquerra
+                    a[j] = a[j + 1];
+                }
+                n--;
+                i = 0;
+            } else {
+                i++;
+            }
+        }*/
+        
         i = 0;
+        //CERCAR PRIMER NUMERO NEGASÇTIU (NUMERO QUE ES LLEVA) I VOMPARAR-LO AMB EL SEU PRECURSOR (ha de ser el mateix amb canvi de signe
         while (k == 0 && i < n - 1) {
             if (a[i] < 0) {
                 int j = i - 1;
 
                 if (j < 0 || -a[j] != a[i]) {
                     k = 5;
-                    break;
+                    //break;
                 }
 
-                // eliminar pareja
+                // eliminar parejaj de numeros
                 for (int x = j; x < n - 2; x++) {
                     a[x] = a[x + 2];
                 }
-                n -= 2;
+                n = n-2;
                 i = 0;
             } else {
                 i++;
@@ -85,11 +100,14 @@ int main() {
         for (int i = 0; i < n; i++) cout << a[i] << " ";
         cout << endl;*/
 
-        if (k == 5) cout << "PARANORMAL" << endl;
-        else cout << "NORMAL" << endl;
-
+        if (k == 5){
+            cout << "PARANORMAL" << endl;
+        }
+        if (k == 0){
+            cout << "NORMAL" << endl;
+        }
         //cout << "-------------------" << endl;
-    }
+        }
 
     return 0;
 }
