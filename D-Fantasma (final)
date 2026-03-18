@@ -1,0 +1,95 @@
+#include <iostream>
+#include <sstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int f; // numero de listas
+    cin >> f;
+    cin.ignore();
+
+    vector<vector<int>> listas;
+
+    // 🔹 LEER TODAS LAS LISTAS
+    for (int ct = 0; ct < f; ct++) {
+        string linea;
+        getline(cin, linea);
+
+        istringstream iss(linea);
+        vector<int> a;
+        int num;
+
+        while (iss >> num) {
+            a.push_back(num);
+        }
+
+        listas.push_back(a);
+    }
+
+    // 🔹 PROCESAR Y MOSTRAR DESPUÉS
+    for (int ct = 0; ct < f; ct++) {
+        vector<int> a = listas[ct];
+        int n = a.size();
+
+        /*cout << "Lista " << ct + 1 << " original (" << n << "): ";
+        for (int x : a) cout << x << " ";
+        cout << endl;*/
+
+        // ELIMINAR CEROS
+        int i = 0;
+        while (i < n) {
+            if (a[i] == 0) {
+                for (int j = i; j < n - 1; j++) {
+                    a[j] = a[j + 1];
+                }
+                n--;
+            } else {
+                i++;
+            }
+        }
+
+        /*cout << "Sin 0 (" << n << "): ";
+        for (int i = 0; i < n; i++) cout << a[i] << " ";
+        cout << endl;*/
+
+        // COMPROBACION
+        int k = 0;
+
+        if (n % 2 != 0 || (n > 0 && a[0] < 0) || (n > 0 && a[n - 1] > 0)) {
+            k = 5;
+        }
+
+        // LOGICA
+        i = 0;
+        while (k == 0 && i < n - 1) {
+            if (a[i] < 0) {
+                int j = i - 1;
+
+                if (j < 0 || -a[j] != a[i]) {
+                    k = 5;
+                    break;
+                }
+
+                // eliminar pareja
+                for (int x = j; x < n - 2; x++) {
+                    a[x] = a[x + 2];
+                }
+                n -= 2;
+                i = 0;
+            } else {
+                i++;
+            }
+        }
+
+        /*cout << "Final (" << n << "): ";
+        for (int i = 0; i < n; i++) cout << a[i] << " ";
+        cout << endl;*/
+
+        if (k == 5) cout << "PARANORMAL" << endl;
+        else cout << "NORMAL" << endl;
+
+        //cout << "-------------------" << endl;
+    }
+
+    return 0;
+}
