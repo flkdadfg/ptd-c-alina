@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <iostream>
 #include <stdio.h>
@@ -13,7 +12,6 @@ int main()
    int n;
    cin >> n;
   for (int i = 0;i < n;i++){
-    //int a; //nombre de casos
     int cont = 0; //contadror de voltes
     int alt;    //altura edifici   
     cin >> alt;
@@ -27,11 +25,9 @@ int main()
     
     //legim totes les dades:
     
-    
     //for (int y = 0;y < a;y++){
       //  cin >> v[y];
 //    }
-    
     
     for (int cont = 0; cont < 1 ;cont++){  
        
@@ -43,8 +39,6 @@ int main()
 
        //}
     }
-    
-        
        
     //cout << alt << " " << hor << endl;
     //cout << n << a << endl;
