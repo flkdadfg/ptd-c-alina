@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-   int n;
+   int n; //numero de llistes
    cin >> n;
   for (int i = 0;i < n;i++){
     int a; //nombre de casos
@@ -38,6 +38,6 @@ int main()
        
         
     }
-    cout << max << " " << sum << endl;
+    cout << max << " " << sum <<  endl;
   }
 }
