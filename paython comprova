@@ -1,0 +1,16 @@
+
+def comprovaGrup (grup):
+    tots = []
+    
+    for i in range(len(grup)):
+        print("El valor de tots és ", grup[i])
+        if (grup[i] in tots):
+            tots.remove(grup[i])
+        print("Llista grup:", grup )
+        print("Llista tots:", tots )
+        if len(tots) == 0:
+            return True
+        else:
+            return False
+fila = [1,2,3,4,5,6,7,8,9]
+comprovaGrup(fila)
